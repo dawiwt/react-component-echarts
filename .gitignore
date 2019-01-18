@@ -1,0 +1,10 @@
+node_modules
+
+# OSX
+.DS_Store
+
+.idea
+
+# Logs
+logs
+*.log
