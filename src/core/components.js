@@ -1,40 +1,35 @@
-import React, { PureComponent } from 'react'
+import React, { Component, isValidElement } from 'react'
+import hashCode from '../utils/hashCode'
 import mergeOptions from '../utils/mergeOptions'
 
-class BaseComponent extends PureComponent {
+class BaseComponent extends Component {
     constructor() {
         super()
-        this.name = ''
         this.option = {}
         this.id = `ec-${Date.now() + Math.ceil(Math.random() * 10000)}`
     }
     componentDidMount() {
-        this.handlePushUpOption()
+        this.name = this.name.replace(/^\S/, function(s) {
+            return s.toLowerCase()
+        })
+        this.handlePushOption()
     }
-    componentDidUpdate() {
-        this.handlePushUpOption()
+    componentDidUpdate(preProps) {
+        hashCode(preProps) !== hashCode(this.props) && this.handlePushOption()
     }
-    handlePushUpOption = () => {
-        const { pushUpOption, children, ...props } = this.props
-        if (pushUpOption) {
-            pushUpOption(
-                this.name.replace(/^\S/, function(s) {
-                    return s.toLowerCase()
-                }),
-                Object.assign({ id: this.id }, props, this.option)
-            )
-        }
+    handlePushOption = () => {
+        const { triggerPushOption, children, ...props } = this.props
+        triggerPushOption && triggerPushOption(this.name, Object.assign({ id: this.id }, props, this.option))
     }
-    handleChildPushUpOption = (name, option) => {
-        mergeOptions(this.option, name, option)
-        this.handlePushUpOption()
+    handleReceiveChildOption = (name, option) => {
+        mergeOptions(this.option, name, option) && this.handlePushOption()
     }
     render() {
         if (this.props.children) {
             return React.Children.map(this.props.children, children => {
-                if (typeof children === 'object') {
+                if (isValidElement(children)) {
                     return React.cloneElement(children, {
-                        pushUpOption: this.handleChildPushUpOption
+                        triggerPushOption: this.handleReceiveChildOption
                     })
                 }
                 return children
@@ -45,16 +40,20 @@ class BaseComponent extends PureComponent {
     }
 }
 
+export function createComponent(compont) {
+    return class extends BaseComponent {
+        constructor() {
+            super()
+            this.name = compont
+        }
+    }
+}
+
 export default ['Title', 'Legend', 'Tooltip', 'AxisPointer', 'Label', 'Toolbox', 'Feature', 'Grid', 'XAxis', 'YAxis', 'Series'].reduce(
     (memo, next) =>
         Object.assign(
             {
-                [next]: class extends BaseComponent {
-                    constructor() {
-                        super()
-                        this.name = next
-                    }
-                }
+                [next]: createComponent(next)
             },
             memo
         ),

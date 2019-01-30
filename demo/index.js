@@ -14,11 +14,11 @@ class Root extends Component {
         }
     }
     componentDidMount() {
-        // setInterval(() => {
-        //     this.setState({
-        //         time: Date.now()
-        //     })
-        // }, 2000)
+        setInterval(() => {
+            this.setState({
+                time: Date.now()
+            })
+        }, 2000)
         setTimeout(() => {
             this.setState({
                 legend: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']

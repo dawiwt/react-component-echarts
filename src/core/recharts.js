@@ -1,11 +1,12 @@
-import React, { PureComponent } from 'react'
+import React, { Component, isValidElement } from 'react'
 import PropTypes from 'prop-types'
 import echarts from 'echarts'
 import ctx from 'classnames'
+import hashCode from '../utils/hashCode'
 import debounce from '../utils/debounce'
 import mergeOptions from '../utils/mergeOptions'
 
-export default class extends PureComponent {
+export default class extends Component {
     constructor() {
         super()
         this.count = 0
@@ -33,26 +34,25 @@ export default class extends PureComponent {
         })
         this.handleSetOption()
     }
-    componentDidUpdate() {
-        this.handleSetOption()
+    componentDidUpdate(preProps) {
+        hashCode(preProps) !== hashCode(this.props) && this.handleSetOption()
     }
     handleSetOption = debounce(() => {
-        this.count++
-        console.log('渲染次数：', this.count)
         const { notMerge, lazyUpdate, silent } = this.props
         this.chart.setOption(this.option, { notMerge, lazyUpdate, silent })
+        this.count++
+        console.log('渲染次数：', this.count)
     }, 100)
-    handleChildPushUpOption = (name, option) => {
-        mergeOptions(this.option, name, option)
-        this.handleSetOption()
+    handleReceiveChildOption = (name, option) => {
+        mergeOptions(this.option, name, option) && this.handleSetOption()
     }
     render() {
         return (
             <div ref={this.domRef} className={ctx(this.props.className)} style={this.props.style}>
                 {React.Children.map(this.props.children, children => {
-                    if (typeof children === 'object') {
+                    if (isValidElement(children)) {
                         return React.cloneElement(children, {
-                            pushUpOption: this.handleChildPushUpOption
+                            triggerPushOption: this.handleReceiveChildOption
                         })
                     }
                     return children
