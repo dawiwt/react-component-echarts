@@ -22,6 +22,7 @@
     "babel-loader": "^8.0.5",
     "path": "^0.12.7",
     "prop-types": "^15.6.2",
+    "react-router-dom": "^4.3.1",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",
@@ -32,6 +33,7 @@
     "echarts": "^4.2.0-rc.2",
     "immutable": "^4.0.0-rc.12",
     "object-hash": "^1.3.1",
+    "pretty": "^2.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   }

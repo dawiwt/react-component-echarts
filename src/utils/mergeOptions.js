@@ -5,7 +5,7 @@ export default function(parent, name, child) {
         // 当前配置是个数组
         if (Array.isArray(options)) {
             // 查找数组中是不是已存在该项
-            const option = options.find(opt => opt.id === child.id)
+            const option = options.find(opt => opt.optid === child.optid)
             if (option) {
                 if (hashCode(option) === hashCode(child)) {
                     return false
@@ -16,7 +16,7 @@ export default function(parent, name, child) {
             }
         } else {
             // 非数组，更新或赋值
-            if (options.id == child.id) {
+            if (options.optid == child.optid) {
                 if (hashCode(options) === hashCode(child)) {
                     return false
                 }

@@ -1,7 +1,7 @@
 import hash from 'object-hash'
 
 // ignore key
-const keys = ['children', 'triggerPushOption']
+const keys = []
 
 export default function hashCode(obj) {
     return hash(obj, {

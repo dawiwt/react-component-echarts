@@ -39,6 +39,7 @@ export default class extends Component {
     }
     handleSetOption = debounce(() => {
         const { notMerge, lazyUpdate, silent } = this.props
+        console.log('this.option', this.option)
         this.chart.setOption(this.option, { notMerge, lazyUpdate, silent })
         this.count++
         console.log('渲染次数：', this.count)

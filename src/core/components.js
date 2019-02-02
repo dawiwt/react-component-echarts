@@ -6,12 +6,9 @@ class BaseComponent extends Component {
     constructor() {
         super()
         this.option = {}
-        this.id = `ec-${Date.now() + Math.ceil(Math.random() * 10000)}`
+        this.optid = `ec-${Date.now() + Math.ceil(Math.random() * 10000)}`
     }
     componentDidMount() {
-        this.name = this.name.replace(/^\S/, function(s) {
-            return s.toLowerCase()
-        })
         this.handlePushOption()
     }
     componentDidUpdate(preProps) {
@@ -19,7 +16,7 @@ class BaseComponent extends Component {
     }
     handlePushOption = () => {
         const { triggerPushOption, children, ...props } = this.props
-        triggerPushOption && triggerPushOption(this.name, Object.assign({ id: this.id }, props, this.option))
+        triggerPushOption && triggerPushOption(this.name, Object.assign({ optid: this.optid }, props, this.option))
     }
     handleReceiveChildOption = (name, option) => {
         mergeOptions(this.option, name, option) && this.handlePushOption()
@@ -49,11 +46,32 @@ export function createComponent(compont) {
     }
 }
 
-export default ['Title', 'Legend', 'Tooltip', 'AxisPointer', 'Label', 'Toolbox', 'Feature', 'Grid', 'XAxis', 'YAxis', 'Series'].reduce(
+export default [
+    'title',
+    'legend',
+    'tooltip',
+    'axisPointer',
+    'label',
+    'toolbox',
+    'feature',
+    'grid',
+    'xAxis',
+    'yAxis',
+    'series',
+    'dataZoom',
+    'link',
+    'visualMap',
+    'markArea',
+    'markLine',
+    'graphic',
+    'children'
+].reduce(
     (memo, next) =>
         Object.assign(
             {
-                [next]: createComponent(next)
+                [next.replace(/^\S/, function(s) {
+                    return s.toUpperCase()
+                })]: createComponent(next)
             },
             memo
         ),
