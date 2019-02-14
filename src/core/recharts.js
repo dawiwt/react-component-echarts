@@ -1,15 +1,16 @@
-import React, { Component, isValidElement } from 'react'
+import React, { PureComponent, isValidElement } from 'react'
 import PropTypes from 'prop-types'
 import echarts from 'echarts'
 import ctx from 'classnames'
-import hashCode from '../utils/hashCode'
-import debounce from '../utils/debounce'
 import mergeOptions from '../utils/mergeOptions'
+import isEqual from '../utils/isEqual'
 
-export default class extends Component {
+export default class extends PureComponent {
     constructor() {
         super()
-        this.count = 0
+        this.state = {
+            isLoaded: false
+        }
         this.option = {}
         this.domRef = React.createRef()
     }
@@ -25,7 +26,7 @@ export default class extends Component {
         silent: false
     }
     componentDidMount() {
-        const { theme, devicePixelRatio, renderer, width, height } = this.props
+        const { theme, devicePixelRatio, renderer, width, height, onLoad } = this.props
         this.chart = echarts.init(this.domRef.current, theme, {
             devicePixelRatio,
             renderer,
@@ -33,19 +34,32 @@ export default class extends Component {
             height
         })
         this.handleSetOption()
+        this.setState(
+            {
+                isLoaded: true
+            },
+            () => onLoad && onLoad(this.chart)
+        )
     }
     componentDidUpdate(preProps) {
-        hashCode(preProps) !== hashCode(this.props) && this.handleSetOption()
+        if (!isEqual(this.props, preProps, { exclude: ['children'] })) {
+            this.handleSetOption()
+        }
     }
-    handleSetOption = debounce(() => {
+    componentWillUnmount() {
+        this.chart.dispose()
+    }
+    handleSetOption = () => {
         const { notMerge, lazyUpdate, silent } = this.props
-        console.log('this.option', this.option)
         this.chart.setOption(this.option, { notMerge, lazyUpdate, silent })
-        this.count++
-        console.log('渲染次数：', this.count)
-    }, 100)
+    }
     handleReceiveChildOption = (name, option) => {
-        mergeOptions(this.option, name, option) && this.handleSetOption()
+        const options = mergeOptions(this.option, name, option)
+        if (this.chart && options && this.state.isLoaded) {
+            this.chart.setOption({
+                [name]: options[name]
+            })
+        }
     }
     render() {
         return (

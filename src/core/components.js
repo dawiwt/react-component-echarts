@@ -1,8 +1,8 @@
-import React, { Component, isValidElement } from 'react'
-import hashCode from '../utils/hashCode'
+import React, { PureComponent, isValidElement } from 'react'
 import mergeOptions from '../utils/mergeOptions'
+import isEqual from '../utils/isEqual'
 
-class BaseComponent extends Component {
+class BaseComponent extends PureComponent {
     constructor() {
         super()
         this.option = {}
@@ -12,7 +12,9 @@ class BaseComponent extends Component {
         this.handlePushOption()
     }
     componentDidUpdate(preProps) {
-        hashCode(preProps) !== hashCode(this.props) && this.handlePushOption()
+        if (!isEqual(this.props, preProps, { exclude: ['children', 'triggerPushOption'] })) {
+            this.handlePushOption()
+        }
     }
     handlePushOption = () => {
         const { triggerPushOption, children, ...props } = this.props
@@ -64,7 +66,11 @@ export default [
     'markArea',
     'markLine',
     'graphic',
-    'children'
+    'children',
+    'splitLine',
+    'axisLabel',
+    'style',
+    'lineStyle'
 ].reduce(
     (memo, next) =>
         Object.assign(

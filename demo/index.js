@@ -12,7 +12,7 @@ const App = withRouter(
     class extends Component {
         componentDidMount() {
             this.props.history.listen(params => {
-                console.log('history change', params)
+                // code here...
             })
         }
         render() {

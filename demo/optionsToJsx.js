@@ -20,7 +20,11 @@ const tagNames = [
     'markArea',
     'markLine',
     'graphic',
-    'children'
+    'children',
+    'splitLine',
+    'axisLabel',
+    'style',
+    'lineStyle'
 ]
 
 export default class extends Component {

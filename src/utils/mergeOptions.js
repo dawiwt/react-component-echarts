@@ -1,4 +1,5 @@
-import hashCode from './hashCode'
+import isEqual from '../utils/isEqual'
+
 export default function(parent, name, child) {
     const options = parent[name]
     if (options) {
@@ -7,7 +8,7 @@ export default function(parent, name, child) {
             // 查找数组中是不是已存在该项
             const option = options.find(opt => opt.optid === child.optid)
             if (option) {
-                if (hashCode(option) === hashCode(child)) {
+                if (isEqual(option, child)) {
                     return false
                 }
                 Object.assign(option, child)
@@ -17,7 +18,7 @@ export default function(parent, name, child) {
         } else {
             // 非数组，更新或赋值
             if (options.optid == child.optid) {
-                if (hashCode(options) === hashCode(child)) {
+                if (isEqual(options, child)) {
                     return false
                 }
                 Object.assign(options, child)
