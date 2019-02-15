@@ -1,2 +1,2 @@
-# react-echarts
+# react-component-echarts
 component echarts
