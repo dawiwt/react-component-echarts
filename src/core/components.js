@@ -3,10 +3,11 @@ import mergeOptions from '../utils/mergeOptions'
 import isEqual from '../utils/isEqual'
 
 class BaseComponent extends PureComponent {
-    constructor() {
-        super()
-        this.option = {}
-        this.optid = `ec-${Date.now() + Math.ceil(Math.random() * 10000)}`
+    constructor(props) {
+        super(props)
+        this.options = {
+            optid: `ec-${Date.now() + Math.ceil(Math.random() * 10000)}`
+        }
     }
     componentDidMount() {
         this.handlePushOption()
@@ -18,10 +19,14 @@ class BaseComponent extends PureComponent {
     }
     handlePushOption = () => {
         const { triggerPushOption, children, ...props } = this.props
-        triggerPushOption && triggerPushOption(this.name, Object.assign({ optid: this.optid }, props, this.option))
+        triggerPushOption && triggerPushOption(this.name, Object.assign({}, props, this.options))
     }
     handleReceiveChildOption = (name, option) => {
-        mergeOptions(this.option, name, option) && this.handlePushOption()
+        const newOption = mergeOptions(this.options[name], option)
+        if (newOption) {
+            this.options[name] = newOption
+            this.handlePushOption()
+        }
     }
     render() {
         if (this.props.children) {

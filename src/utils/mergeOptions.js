@@ -1,33 +1,21 @@
 import isEqual from '../utils/isEqual'
 
-export default function(parent, name, child) {
-    const options = parent[name]
-    if (options) {
+export default function(oldOption, newOption) {
+    if (oldOption) {
         // 当前配置是个数组
-        if (Array.isArray(options)) {
-            // 查找数组中是不是已存在该项
-            const option = options.find(opt => opt.optid === child.optid)
-            if (option) {
-                if (isEqual(option, child)) {
-                    return false
+        if (Array.isArray(oldOption)) {
+            for (let i = 0, l = oldOption.length; i < l; i++) {
+                const option = oldOption[i]
+                if (option.optid === newOption.optid) {
+                    return isEqual(option, newOption) ? false : ((oldOption[i] = newOption), oldOption)
                 }
-                Object.assign(option, child)
-            } else {
-                options.push(child)
             }
+            return oldOption.concat(newOption)
         } else {
-            // 非数组，更新或赋值
-            if (options.optid == child.optid) {
-                if (isEqual(options, child)) {
-                    return false
-                }
-                Object.assign(options, child)
-            } else {
-                parent[name] = [options, child]
+            if (oldOption.optid !== newOption.optid) {
+                return [oldOption, newOption]
             }
         }
-    } else {
-        parent[name] = child
     }
-    return parent
+    return newOption
 }

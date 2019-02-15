@@ -11,7 +11,7 @@ export default class extends PureComponent {
         this.state = {
             isLoaded: false
         }
-        this.option = {}
+        this.options = {}
         this.domRef = React.createRef()
     }
     static propTypes = {
@@ -51,14 +51,17 @@ export default class extends PureComponent {
     }
     handleSetOption = () => {
         const { notMerge, lazyUpdate, silent } = this.props
-        this.chart.setOption(this.option, { notMerge, lazyUpdate, silent })
+        this.chart.setOption(this.options, { notMerge, lazyUpdate, silent })
     }
     handleReceiveChildOption = (name, option) => {
-        const options = mergeOptions(this.option, name, option)
-        if (this.chart && options && this.state.isLoaded) {
-            this.chart.setOption({
-                [name]: options[name]
-            })
+        const newOptions = mergeOptions(this.options[name], option)
+        if (newOptions) {
+            this.options[name] = newOptions
+            if (this.chart && this.state.isLoaded) {
+                this.chart.setOption({
+                    [name]: newOptions
+                })
+            }
         }
     }
     render() {
