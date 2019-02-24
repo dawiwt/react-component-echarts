@@ -6,13 +6,13 @@ export default function(oldOption, newOption) {
         if (Array.isArray(oldOption)) {
             for (let i = 0, l = oldOption.length; i < l; i++) {
                 const option = oldOption[i]
-                if (option.optid === newOption.optid) {
+                if (option.__rechartId === newOption.__rechartId) {
                     return isEqual(option, newOption) ? false : ((oldOption[i] = newOption), oldOption)
                 }
             }
             return oldOption.concat(newOption)
         } else {
-            if (oldOption.optid !== newOption.optid) {
+            if (oldOption.__rechartId !== newOption.__rechartId) {
                 return [oldOption, newOption]
             }
         }

@@ -30,6 +30,8 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "css-element-queries": "^1.1.1",
+    "debounce": "^1.2.0",
     "echarts": "^4.2.0-rc.2",
     "fast-deep-equal": "^2.0.1",
     "immutable": "^4.0.0-rc.12",

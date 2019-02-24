@@ -6,7 +6,7 @@ class BaseComponent extends PureComponent {
     constructor(props) {
         super(props)
         this.options = {
-            optid: `ec-${Date.now() + Math.ceil(Math.random() * 10000)}`
+            __rechartId: `ec-${Date.now() + Math.ceil(Math.random() * 10000)}`
         }
     }
     componentDidMount() {
@@ -19,7 +19,9 @@ class BaseComponent extends PureComponent {
     }
     handlePushOption = () => {
         const { triggerPushOption, children, ...props } = this.props
-        triggerPushOption && triggerPushOption(this.name, Object.assign({}, props, this.options))
+        if (triggerPushOption) {
+            triggerPushOption(this.name, Object.assign({}, props, this.options))
+        }
     }
     handleReceiveChildOption = (name, option) => {
         const newOption = mergeOptions(this.options[name], option)
@@ -44,6 +46,7 @@ class BaseComponent extends PureComponent {
     }
 }
 
+// 创建子元素
 export function createComponent(compont) {
     return class extends BaseComponent {
         constructor() {
