@@ -10,7 +10,14 @@ const timeData = originTimeData.map(function(str) {
 
 export default function() {
     return (
-        <Recharts style={{ height: '80%' }}>
+        <Recharts
+            style={{ height: '80%' }}
+            onEvents={[
+                ['click', params => console.log('click', params)],
+                ['legendselectchanged', params => console.log('legendselectchanged', params)],
+                ['click', 'series.line', params => console.log('click.series.line', params)],
+                ['mouseover', { seriesIndex: 1, name: 'xx' }, params => console.log('mouseover', params)]
+            ]}>
             <Title text="雨量流量关系图" subtext="数据来自西安兰特水电测控技术有限公司" x="center" />
             <Tooltip trigger="axis">
                 <AxisPointer animation={false} />

@@ -15,16 +15,19 @@ const notOptionsKeys = ['children', 'style'].concat(configKeys, sizeKeys)
 export default class extends PureComponent {
     constructor() {
         super()
+        this.options = {}
         this.state = {
             isLoaded: false
         }
-        this.options = {}
     }
     static propTypes = {
-        // 详见 https://echarts.baidu.com/api.html#echartsInstance.setOption
-        notMerge: PropTypes.bool, //可选，是否不跟之前设置的 option 进行合并，默认为 false，即合并
-        lazyUpdate: PropTypes.bool, //可选，在设置完 option 后是否不立即更新图表，默认为 false，即立即更新
-        silent: PropTypes.bool //可选，阻止调用 setOption 时抛出事件，默认为 false，即抛出事件
+        notMerge: PropTypes.bool,
+        lazyUpdate: PropTypes.bool,
+        silent: PropTypes.bool,
+        theme: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+        devicePixelRatio: PropTypes.number,
+        renderer: PropTypes.oneOf(['canvas', 'svg']),
+        onEvents: PropTypes.arrayOf(PropTypes.array)
     }
     static defaultProps = {
         notMerge: false,
@@ -34,6 +37,7 @@ export default class extends PureComponent {
     componentDidMount() {
         const { onLoad } = this.props
         this.chart = this.handleEchartsInit()
+        this.handleBindEvent()
         this.handleSetOption()
         this.setState(
             {
@@ -95,7 +99,16 @@ export default class extends PureComponent {
             this.chart = null
         }
         this.chart = this.handleEchartsInit()
+        this.handleBindEvent()
         this.handleSetOption()
+    }
+    handleBindEvent = () => {
+        const { onEvents } = this.props
+        if (onEvents) {
+            for (let i = 0, l = onEvents.length; i < l; i++) {
+                this.chart.on.apply(this.chart, onEvents[i])
+            }
+        }
     }
     handleSetOption = () => {
         const { notMerge, lazyUpdate, silent } = this.props
