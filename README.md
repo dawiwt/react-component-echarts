@@ -37,8 +37,8 @@ const { XAxis, YAxis, Series } = Components
 
 //图表代码
 <Recharts>
+    <YAxis type="value" />
     <XAxis type="category" data={["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]} />
-        <YAxis type="value" />
     <Series data={[820,932,901,934,1290,1330,1320]} type="line" smooth={true} />
 </Recharts>
 
@@ -53,7 +53,10 @@ const { XAxis, YAxis, Series } = Components
 
 ```js
 <Recharts
-    onEvents={[['click', params => console.log('click', params)], ['legendselectchanged', params => console.log('legendselectchanged', params)]]}>
+    onEvents={[
+        ['click', params => console.log('click', params)], 
+        ['legendselectchanged', params => console.log('legendselectchanged', params)]
+    ]}>
     ...
 </Recharts>
 ```
@@ -62,7 +65,7 @@ const { XAxis, YAxis, Series } = Components
 
 ```js
 //例如
-;<XAxis type="category" />
+<XAxis type="category" />
 
 //相当于
 option = { xAxis: { type: 'category' } }
@@ -72,7 +75,7 @@ option = { xAxis: { type: 'category' } }
 
 ```js
 //例如
-;<Tooltip trigger="axis">
+<Tooltip trigger="axis">
     <AxisPointer type="cross">
         <Label backgroundColor="#6a7985" />
     </AxisPointer>
@@ -96,7 +99,14 @@ option = {
 
 ```js
 // init
-<Recharts theme="custom-theme" devicePixelRatio={window.devicePixelRatio} renderer="canvas" width={500} height={500}>...</Recharts>
+<Recharts 
+    theme="custom-theme" 
+    devicePixelRatio={window.devicePixelRatio} 
+    renderer="canvas" 
+    width={500} 
+    height={500}>
+    ...
+</Recharts>
 
 // setOption
 <Recharts notMerge={true} lazyUpdate={false} silent={true}>...</Recharts>
