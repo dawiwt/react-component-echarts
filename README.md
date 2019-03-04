@@ -9,8 +9,8 @@
 -   组件式开发
 -   图表自适应
 -   功能完全兼容`echarts`本身功能
--   通过 Props 配置，学习、维护成本更低
--   支持[辅助工具](https://github.com/dawiwt/react-component-echarts)从配置到组件的快速转换
+-   通过`Props`配置，学习、维护成本更低
+-   支持[辅助工具](https://github.com/dawiwt/react-component-echarts)从配置到组件的快速转换，高效开发
 
 ## Install
 
@@ -62,7 +62,7 @@ const { XAxis, YAxis, Series } = Components
 
 ```js
 //例如
-<XAxis type="category" />
+;<XAxis type="category" />
 
 //相当于
 option = { xAxis: { type: 'category' } }
@@ -72,7 +72,7 @@ option = { xAxis: { type: 'category' } }
 
 ```js
 //例如
-<Tooltip trigger="axis">
+;<Tooltip trigger="axis">
     <AxisPointer type="cross">
         <Label backgroundColor="#6a7985" />
     </AxisPointer>
@@ -101,6 +101,10 @@ option = {
 // setOption
 <Recharts notMerge={true} lazyUpdate={false} silent={true}>...</Recharts>
 ```
+
+**特别说明：** 除`width`与`height`属性，其余的`init`与`setOption`属性会导致图表重绘。
+
+更多属性查看 https://www.echartsjs.com/option.html
 
 ## LICENSE
 
