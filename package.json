@@ -2,10 +2,11 @@
   "name": "react-echarts",
   "version": "0.0.1",
   "description": "echarts for react",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dist": "打包 dist",
+    "gh-pages": "show"
   },
   "keywords": [
     "react",
@@ -21,22 +22,23 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "path": "^0.12.7",
-    "prop-types": "^15.6.2",
     "react-router-dom": "^4.3.1",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",
-    "webpack-hot-middleware": "^2.24.3"
+    "webpack-hot-middleware": "^2.24.3",
+    "pretty": "^2.0.0",
+    "react-dom": "^16.7.0"
   },
   "dependencies": {
+    "debounce": "^1.2.0",
     "classnames": "^2.2.6",
     "css-element-queries": "^1.1.1",
-    "debounce": "^1.2.0",
-    "echarts": "^4.2.0-rc.2",
-    "fast-deep-equal": "^2.0.1",
-    "immutable": "^4.0.0-rc.12",
-    "pretty": "^2.0.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "fast-deep-equal": "^2.0.1"
+  },
+  "peerDependencies": {
+    "echarts": "^3.0.0 || ^4.0.0",
+    "react": ">=0.13.0 || ^0.14 || ^15.0.0 || >=16.0.0",
+    "prop-types": "^15.0.0"
   }
 }
