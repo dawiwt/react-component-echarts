@@ -1,31 +1,6 @@
 import React, { Component } from 'react'
 import pretty from 'pretty'
-
-// 全部节点属性
-const tagNames = [
-    'title',
-    'legend',
-    'tooltip',
-    'axisPointer',
-    'label',
-    'toolbox',
-    'feature',
-    'grid',
-    'xAxis',
-    'yAxis',
-    'series',
-    'dataZoom',
-    'link',
-    'visualMap',
-    'markArea',
-    'markLine',
-    'graphic',
-    'children',
-    'splitLine',
-    'axisLabel',
-    'style',
-    'lineStyle'
-]
+import tagNames from '../tags'
 
 export default class extends Component {
     constructor() {

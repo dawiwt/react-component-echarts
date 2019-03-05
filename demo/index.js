@@ -6,7 +6,6 @@ import RainfallAndWaterFlow from './example/rainfallAndWaterFlow'
 import LineGradient from './example/lineGradient'
 import DistributionOfElectricity from './example/distributionOfElectricity'
 import CustomGraphicComponent from './example/customGraphicComponent'
-import OptionsToJsx from './optionsToJsx'
 
 const App = withRouter(
     class extends Component {
@@ -19,7 +18,7 @@ const App = withRouter(
             return (
                 <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, top: 0, padding: 10 }}>
                     <h2>
-                        图表 <Link to="options-to-jsx">options-to-jsx</Link>
+                        图表 <a href="./tools.html">options-to-jsx</a>
                     </h2>
                     <nav>
                         <Link to="stacked-area-chart">StackedAreaChart</Link>&nbsp;
@@ -29,7 +28,6 @@ const App = withRouter(
                         <Link to="custom-graphic-component">CustomGraphicComponent</Link>&nbsp;
                     </nav>
                     <Switch>
-                        <Route path="/options-to-jsx" component={OptionsToJsx} />
                         <Route path="/stacked-area-chart" component={StackedAreaChart} />
                         <Route path="/rainfall-and-water-flow" component={RainfallAndWaterFlow} />
                         <Route path="/line-gradient" component={LineGradient} />

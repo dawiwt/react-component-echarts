@@ -1,16 +1,18 @@
 {
-  "name": "react-echarts",
+  "name": "react-component-echarts",
   "version": "0.0.1",
   "description": "echarts for react",
-  "main": "dist/index.js",
+  "main": "dist/react-component-echarts.min.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "dist": "打包 dist",
+    "dist": "webpack --config ./webpack.dist.js",
     "gh-pages": "show"
   },
   "keywords": [
     "react",
-    "echarts"
+    "echarts",
+    "react-component-echarts",
+    "component"
   ],
   "author": "DaWi",
   "license": "MIT",
@@ -21,19 +23,23 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "echarts": "^4.1.0",
+    "html-webpack-plugin": "^3.2.0",
     "path": "^0.12.7",
+    "pretty": "^2.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.3",
+    "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",
-    "webpack-hot-middleware": "^2.24.3",
-    "pretty": "^2.0.0",
-    "react-dom": "^16.7.0"
+    "webpack-hot-middleware": "^2.24.3"
   },
   "dependencies": {
-    "debounce": "^1.2.0",
     "classnames": "^2.2.6",
     "css-element-queries": "^1.1.1",
+    "debounce": "^1.2.0",
     "fast-deep-equal": "^2.0.1"
   },
   "peerDependencies": {

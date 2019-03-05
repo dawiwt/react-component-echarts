@@ -1,10 +1,14 @@
 const path = require('path')
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    entry: './demo/index.js',
+    entry: {
+        app: './demo/index.js',
+        tools: './tools/index.js'
+    },
     output: {
-        filename: 'app.js'
+        filename: '[name].js'
     },
     devtool: 'cheap-eval-source-map',
     resolve: {
@@ -21,7 +25,19 @@ module.exports = {
             }
         ]
     },
-    plugins: [new webpack.HotModuleReplacementPlugin()],
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './demo/index.html',
+            filename: './index.html',
+            chunks: ['app']
+        }),
+        new HtmlWebpackPlugin({
+            template: './tools/index.html',
+            filename: './tools.html',
+            chunks: ['tools']
+        }),
+        new webpack.HotModuleReplacementPlugin()
+    ],
     devServer: {
         historyApiFallback: true,
         compress: true,

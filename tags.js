@@ -1,0 +1,25 @@
+// 子节点
+export default [
+    'title',
+    'legend',
+    'tooltip',
+    'axisPointer',
+    'label',
+    'toolbox',
+    'feature',
+    'grid',
+    'xAxis',
+    'yAxis',
+    'series',
+    'dataZoom',
+    'link',
+    'visualMap',
+    'markArea',
+    'markLine',
+    'graphic',
+    'children',
+    'splitLine',
+    'axisLabel',
+    'style',
+    'lineStyle'
+]

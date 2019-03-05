@@ -1,4 +1,5 @@
 import BaseComponent from './baseComponent'
+import tagNames from '../../tags'
 
 // 创建子元素
 export function createComponent(compont) {
@@ -10,30 +11,7 @@ export function createComponent(compont) {
     }
 }
 
-export default [
-    'title',
-    'legend',
-    'tooltip',
-    'axisPointer',
-    'label',
-    'toolbox',
-    'feature',
-    'grid',
-    'xAxis',
-    'yAxis',
-    'series',
-    'dataZoom',
-    'link',
-    'visualMap',
-    'markArea',
-    'markLine',
-    'graphic',
-    'children',
-    'splitLine',
-    'axisLabel',
-    'style',
-    'lineStyle'
-].reduce(
+export default tagNames.reduce(
     (memo, next) =>
         Object.assign(
             {
