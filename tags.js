@@ -21,5 +21,7 @@ export default [
     'splitLine',
     'axisLabel',
     'style',
-    'lineStyle'
+    'lineStyle',
+    'options',
+    'baseOption'
 ]

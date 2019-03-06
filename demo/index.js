@@ -1,51 +1,109 @@
+import './index.less'
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import { BrowserRouter as Router, Route, Link, Switch, withRouter } from 'react-router-dom'
 import StackedAreaChart from './example/stackedAreaChart'
-import RainfallAndWaterFlow from './example/rainfallAndWaterFlow'
-import LineGradient from './example/lineGradient'
 import DistributionOfElectricity from './example/distributionOfElectricity'
-import CustomGraphicComponent from './example/customGraphicComponent'
+import WeekTemperature from './example/weekTemperature'
+import GradientColorShadowClickZoom from './example/gradientColorShadowClickZoom'
+import BarPolarRealEstate from './example/barPolarRealEstate'
+import PieCustom from './example/pieCustom'
+import ScatterAqiColor from './example/scatterAqiColor'
+import TheMap from './example/map'
 
-const App = withRouter(
-    class extends Component {
-        componentDidMount() {
-            this.props.history.listen(params => {
-                // code here...
-            })
-        }
-        render() {
-            return (
-                <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, top: 0, padding: 10 }}>
-                    <h2>
-                        图表 <a href="./tools.html">options-to-jsx</a>
-                    </h2>
-                    <nav>
-                        <Link to="stacked-area-chart">StackedAreaChart</Link>&nbsp;
-                        <Link to="rainfall-and-water-flow">RainfallAndWaterFlow</Link>&nbsp;
-                        <Link to="line-gradient">LineGradient</Link>&nbsp;
-                        <Link to="distribution-of-electricity">DistributionOfElectricity</Link>&nbsp;
-                        <Link to="custom-graphic-component">CustomGraphicComponent</Link>&nbsp;
-                    </nav>
-                    <Switch>
-                        <Route path="/stacked-area-chart" component={StackedAreaChart} />
-                        <Route path="/rainfall-and-water-flow" component={RainfallAndWaterFlow} />
-                        <Route path="/line-gradient" component={LineGradient} />
-                        <Route path="/distribution-of-electricity" component={DistributionOfElectricity} />
-                        <Route path="/custom-graphic-component" component={CustomGraphicComponent} />
-                    </Switch>
-                </div>
-            )
-        }
+const demos = {
+    StackedAreaChart: {
+        type: 'area',
+        title: '堆叠区域图',
+        component: StackedAreaChart
+    },
+    DistributionOfElectricity: {
+        type: 'line',
+        title: '一天用电量分布',
+        component: DistributionOfElectricity
+    },
+    WeekTemperature: {
+        type: 'marker',
+        title: '未来一周气温变化',
+        component: WeekTemperature
+    },
+    GradientColorShadowClickZoom: {
+        type: 'bar',
+        title: '特性示例：渐变色 阴影 点击缩放',
+        component: GradientColorShadowClickZoom
+    },
+    BarPolarRealEstate: {
+        type: 'bar-polar',
+        title: '在中国租个房子有多贵',
+        component: BarPolarRealEstate
+    },
+    PieCustom: {
+        type: 'pie',
+        title: '自定义饼图',
+        component: PieCustom
+    },
+    ScatterAqiColor: {
+        type: 'scatter',
+        title: '散点图',
+        component: ScatterAqiColor
+    },
+    TheMap: {
+        type: ' map',
+        title: 'iphone销量',
+        component: TheMap
     }
-)
-
-function Root() {
-    return (
-        <Router basename="/">
-            <App />
-        </Router>
-    )
 }
 
-render(<Root />, document.querySelector('#root'))
+class App extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            name: 'StackedAreaChart'
+        }
+    }
+    render() {
+        const Chart = demos[this.state.name]
+        return (
+            <div className="demo-container">
+                <header>
+                    <h1>React Component Echarts</h1>
+                    <h3>
+                        组件式百度图表 👉{' '}
+                        <a href="./tools.html" target="\_parent">
+                            辅助工具
+                        </a>
+                    </h3>
+                    {/* <a href="https://github.com/dawiwt/react-component-echarts" target="\_parent">
+                        <img alt="" src="https://img.shields.io/github/stars/dawiwt/react-component-echarts.svg?style=social&label=Star" />
+                    </a> */}
+                </header>
+                <div className="demo-body">
+                    <ul className="demo-slider">
+                        {Object.keys(demos).map((name, key) => (
+                            <li key={`demo-slider-${key}`}>
+                                <a href="javascript:void(0);" onClick={() => this.setState({ name })}>
+                                    {demos[name].title}
+                                </a>
+                                <sub>[{demos[name].type}]</sub>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className="demo-content">
+                        <section>
+                            <Chart.component />
+                        </section>
+                    </div>
+                </div>
+                <footer>
+                    <p>
+                        <span>Github 👉 </span>
+                        <a href="https://github.com/dawiwt/react-component-echarts" target="\_parent">
+                            https://github.com/dawiwt/react-component-echarts
+                        </a>
+                    </p>
+                </footer>
+            </div>
+        )
+    }
+}
+
+render(<App />, document.querySelector('#root'))

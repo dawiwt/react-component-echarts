@@ -130,7 +130,7 @@ export default class extends PureComponent {
     }
     render() {
         return (
-            <div ref={layout => (this.layout = layout)} className={ctx(this.props.className)} style={this.props.style}>
+            <div ref={layout => (this.layout = layout)} className={ctx('react-component-echarts', this.props.className)} style={this.props.style}>
                 <div ref={dom => (this.dom = dom)} style={{ width: '100%', height: '100%' }}>
                     {React.Children.map(this.props.children, children => {
                         if (isValidElement(children)) {

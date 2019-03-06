@@ -4,23 +4,9 @@ import { Recharts, Components } from 'react-echarts'
 const { Title, Legend, Tooltip, AxisPointer, Label, Toolbox, Feature, Grid, XAxis, YAxis, Series } = Components
 
 export default class extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            renderer: 'canvas'
-        }
-    }
-    componentDidMount() {
-        setTimeout(() => {
-            this.setState({
-                renderer: 'svg'
-            })
-        }, 5000)
-    }
     render() {
-        const { renderer, width } = this.state
         return (
-            <Recharts style={{ height: '80%' }} width={width} renderer={renderer}>
+            <Recharts>
                 <Title text="堆叠区域图" />
                 <Tooltip trigger="axis">
                     <AxisPointer type="cross">

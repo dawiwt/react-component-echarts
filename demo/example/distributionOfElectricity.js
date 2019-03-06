@@ -5,7 +5,7 @@ const { AxisPointer, Feature, MarkArea, Title, Tooltip, Toolbox, XAxis, YAxis, V
 
 export default function() {
     return (
-        <Recharts style={{ height: '80%' }}>
+        <Recharts>
             <Title text="一天用电量分布" subtext="纯属虚构" />
             <Tooltip trigger="axis">
                 <AxisPointer type="cross" />
