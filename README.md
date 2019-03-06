@@ -1,6 +1,6 @@
 # React Component Echarts
 
-组件式百度图表，示例 https://github.com/dawiwt/react-component-echarts
+组件式百度图表，示例 https://dawiwt.github.io/react-component-echarts
 
 [![Build Status](https://api.travis-ci.org/dawiwt/react-component-echarts.svg?branch=master)](https://travis-ci.org/dawiwt/react-component-echarts) [![Coverage Status](https://coveralls.io/repos/github/dawiwt/react-component-echarts/badge.svg?branch=master)](https://coveralls.io/github/dawiwt/react-component-echarts?branch=master) [![npm](https://img.shields.io/npm/v/react-component-echarts.svg)](https://www.npmjs.com/package/react-component-echarts) [![npm](https://img.shields.io/npm/dw/react-component-echarts.svg?label=npm%20downloads&style=flat)](https://www.npmjs.com/package/react-component-echarts) [![npm](https://img.shields.io/npm/l/react-component-echarts.svg)](https://www.npmjs.com/package/react-component-echarts) ![echarts supported](https://img.shields.io/badge/echarts-%5E3.0.0%20%7C%7C%20%5E4.0.0-blue.svg) ![react supported](https://img.shields.io/badge/React-%20%5E15.0.0%20%7C%7C%20%20%5E16.0.0-blue.svg)
 
@@ -10,7 +10,7 @@
 -   图表自适应
 -   功能完全兼容`echarts`本身功能
 -   通过`Props`配置，学习、维护成本更低
--   支持[辅助工具](https://github.com/dawiwt/react-component-echarts)从配置到组件的快速转换，高效开发
+-   支持[辅助工具](https://dawiwt.github.io/react-component-echarts/tools.html)从配置到组件的快速转换，高效开发
 
 ## Install
 
@@ -24,7 +24,7 @@ npm install echarts --save
 
 ## Usage
 
-这里是一个简单示例，更多示例看这里 https://github.com/dawiwt/react-component-echarts
+这里是一个简单示例，更多示例看这里 https://dawiwt.github.io/react-component-echarts
 
 ```js
 
