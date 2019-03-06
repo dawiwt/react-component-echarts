@@ -72,9 +72,9 @@ class App extends Component {
                             辅助工具
                         </a>
                     </h3>
-                    {/* <a href="https://github.com/dawiwt/react-component-echarts" target="\_parent">
+                    <a href="https://github.com/dawiwt/react-component-echarts" target="\_parent">
                         <img alt="" src="https://img.shields.io/github/stars/dawiwt/react-component-echarts.svg?style=social&label=Star" />
-                    </a> */}
+                    </a>
                 </header>
                 <div className="demo-body">
                     <ul className="demo-slider">
