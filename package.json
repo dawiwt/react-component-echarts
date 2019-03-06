@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "dist": "webpack --config ./webpack.dist.js",
-    "gh-pages": "show"
+    "gh-pages": "webpack --config ./webpack.gh-pages.js"
   },
   "keywords": [
     "react",
