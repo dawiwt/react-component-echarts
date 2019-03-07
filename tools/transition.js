@@ -21,7 +21,11 @@ export default class extends Component {
         try {
             const options = obj || this.state.options
             if (typeof options === 'string') {
-                return this.toJSX(eval('(' + this.state.options + ')'))
+                return this.toJSX(new Function(`return ${options}`)(), tagName)
+            }
+
+            if (options === null || typeof options !== 'object') {
+                return `<${tagName} />`
             }
 
             const rows = ['<' + tagName]
@@ -29,7 +33,25 @@ export default class extends Component {
 
             // 子元素数组
             const childRows = []
-            const childKeys = keys.filter(key => tagNames.includes(key))
+            const childKeys = keys.filter(key => {
+                const value = options[key]
+                if (
+                    Array.isArray(value) &&
+                    value.filter(
+                        item =>
+                            // 1. 数组
+                            // 2. null
+                            // 3. 非对象
+                            Array.isArray(item) || item === null || typeof item !== 'object'
+                    ).length > 0
+                ) {
+                    // 如果值为数组
+                    // 并且数组中存在不可转换的项
+                    // 则做为属性处理
+                    return false
+                }
+                return tagNames.includes(key) && typeof value === 'object'
+            })
             for (let c = 0, cl = childKeys.length; c < cl; c++) {
                 const key = childKeys[c],
                     name = this.firstLetterToUpperCase(key),
@@ -50,7 +72,7 @@ export default class extends Component {
                 if (typeof value === 'string') {
                     propRows.push(`${key}="${value}"`)
                 } else if (typeof value === 'function') {
-                    propRows.push(`${key}="${value.name}"`)
+                    propRows.push(`${key}="$${value.name}$"`)
                 } else {
                     propRows.push(`${key}={${JSON.stringify(value)}}`)
                 }
@@ -71,11 +93,25 @@ export default class extends Component {
             }
             return rows.join(' ')
         } catch (err) {
-            console.error(err)
-            this.setState({
-                jsx: err.toString()
-            })
+            return this.handleError(err, obj, tagName)
         }
+    }
+    handleError = (err, options, tagName) => {
+        console.log(err)
+        // 变量未定义，自动创建变量
+        if (err instanceof ReferenceError) {
+            // 取变量名称
+            const varName = err.message.split(' ')[0]
+            this.vars.push((window[varName] = `$${varName}$`))
+        } else if (err instanceof TypeError) {
+            this.setState({
+                err: `请手动删除错误提示中的相关函数：${err.message}`
+            })
+            return false
+        } else {
+            return false
+        }
+        return this.toJSX(options, tagName)
     }
     handleChange = event => {
         const { value } = event.target
@@ -88,50 +124,48 @@ export default class extends Component {
     }
     transformation = () => {
         this.modules = []
+        this.setState({ err: false })
+        if (this.vars) {
+            this.vars.forEach(v => delete window[v.replace(/\$/g, '')])
+        }
+        this.vars = []
         try {
             this.setState({
+                vars: this.vars,
                 jsx: pretty(this.toJSX()),
                 modules: this.modules.map(this.firstLetterToUpperCase)
             })
         } catch (err) {
             console.log(err)
             this.setState({
-                jsx: err.toString()
+                err: err.message,
+                modules: [],
+                vars: [],
+                jsx: ''
             })
         }
     }
-    handleAddVar = () => {
-        const { value } = this.input
-        if (value) {
-            try {
-                eval('window.' + value)
-                this.setState({
-                    vars: [value, ...this.state.vars]
-                })
-                this.input.value = ''
-            } catch (err) {
-                console.error(err)
-            }
-        }
-    }
     render() {
-        const { vars, modules, jsx } = this.state
+        const { vars, modules, jsx, err } = this.state
         return (
             <div>
                 <textarea cols={150} rows={30} onChange={this.handleChange} value={this.state.options} />
-                <p>
-                    <input type="text" placeholder="请输入变量，例：a={}" ref={input => (this.input = input)} />
-                    <span>&nbsp;</span>
-                    <button onClick={this.handleAddVar}>添加变量</button>
-                </p>
-                <div>
-                    {vars.map((v, key) => (
-                        <p key={`var-${key}`}>{v}</p>
-                    ))}
-                </div>
+                {vars && vars.length > 0 && (
+                    <div>
+                        <p>请替换图表代码中以下字符串为真实变量</p>
+                        <ul>
+                            {vars.map((v, k) => (
+                                <li key={`vars-${k}`}>{v}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+
                 <p>
                     <button onClick={this.transformation}>运行</button> >>>
                 </p>
+
+                {err && <p>{err}</p>}
                 {!!modules.length && (
                     <code>
                         <pre>
