@@ -1,50 +1,50 @@
 import './index.less'
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import StackedAreaChart from './example/stackedAreaChart'
-import DistributionOfElectricity from './example/distributionOfElectricity'
-import WeekTemperature from './example/weekTemperature'
-import GradientColorShadowClickZoom from './example/gradientColorShadowClickZoom'
-import BarPolarRealEstate from './example/barPolarRealEstate'
-import PieCustom from './example/pieCustom'
-import ScatterAqiColor from './example/scatterAqiColor'
+import Area from './example/area'
+import Line from './example/line'
+import Marker from './example/marker'
+import Bar from './example/bar'
+import BarPolar from './example/barPolar'
+import Pie from './example/pie'
+import Scatter from './example/scatter'
 import TheMap from './example/map'
 
 const demos = {
     StackedAreaChart: {
         type: 'area',
-        title: '堆叠区域图',
-        component: StackedAreaChart
+        title: '区域图',
+        component: Area
     },
     DistributionOfElectricity: {
         type: 'line',
-        title: '一天用电量分布',
-        component: DistributionOfElectricity
+        title: '折线图',
+        component: Line
     },
     WeekTemperature: {
         type: 'marker',
-        title: '未来一周气温变化',
-        component: WeekTemperature
+        title: '标记',
+        component: Marker
     },
     GradientColorShadowClickZoom: {
         type: 'bar',
-        title: '特性示例：渐变色 阴影 点击缩放',
-        component: GradientColorShadowClickZoom
+        title: '柱状图',
+        component: Bar
     },
     BarPolarRealEstate: {
         type: 'bar-polar',
-        title: '在中国租个房子有多贵',
-        component: BarPolarRealEstate
+        title: '柱状极坐标',
+        component: BarPolar
     },
     PieCustom: {
         type: 'pie',
-        title: '自定义饼图',
-        component: PieCustom
+        title: '饼图',
+        component: Pie
     },
     ScatterAqiColor: {
         type: 'scatter',
         title: '散点图',
-        component: ScatterAqiColor
+        component: Scatter
     },
     TheMap: {
         type: ' map',

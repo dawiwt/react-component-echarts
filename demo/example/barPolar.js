@@ -51,7 +51,13 @@ export default function() {
             <Title text="在中国租个房子有多贵？" subtext="市中心一室月租费（数据来源：https://www.numbeo.com）" />
             <Legend show={true} data={['A', 'B', 'C']} />
             <Grid top={100} />
-            <Tooltip show={true} formatter="formatter" />
+            <Tooltip
+                show={true}
+                formatter={function(params) {
+                    var id = params.dataIndex
+                    return cities[id] + '<br>最低：' + data[id][0] + '<br>最高：' + data[id][1] + '<br>平均：' + data[id][2]
+                }}
+            />
             <Series
                 type="bar"
                 itemStyle={{ normal: { color: 'transparent' } }}
