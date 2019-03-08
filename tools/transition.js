@@ -1,16 +1,41 @@
+import './index.less'
 import React, { Component } from 'react'
 import pretty from 'pretty'
+import AceEditor from 'react-ace'
+import ClipboardJS from 'clipboard'
+import 'brace/mode/jsx'
+import 'brace/mode/python'
+import 'brace/theme/solarized_light'
 import tagNames from '../tags'
+
+const copy =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABTUlEQVRYR+2W4U3DMBSEz14CChsgKGySvClgBBD8ASFgAsQWlyqL0CJGgMIOUYxSNVFD3dhOg1KJ+Kfte+/z+RRHoeeheu4PK4CI3BpjzpVSe20AjTHfSqlnkncu/RqAiDwCuHQJPdefSF417bUBzAHsZ1l2nKbpu2ej2rYoio601oX2i+QoFMAUApJb5UNEvOrYHPASupzZOQARmS6dPV2FdzqwFI4dJ56RrBX+7cAmR3wAXgHUiltgpiTPVuc7A3Dd9ab1AaAzBzxDWN5EFcYuAXxCWAJUYewMYAhh7w4MIez9Cv4lwCeAUZ7n48lk8tbGgSiKTrTWMwBzkgdFjZDn+B7AdZvGFs0DyUUtb4BicxzHN0qpCwCHLUE+jDEvSZIUh1mMIICWTRtlvQLYMlHSev16B34Nm5yoMhEKEPIk2wDWMhEE8BeZ2BmAHzDWSjCpN49mAAAAAElFTkSuQmCC'
 
 export default class extends Component {
     constructor() {
         super()
         this.state = {
-            options: '',
+            options: `{
+    xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line'
+    }]
+}`,
             jsx: '',
             modules: [],
             vars: []
         }
+    }
+    componentDidMount() {
+        this.transformation()
+        new ClipboardJS('.copy')
     }
     firstLetterToUpperCase = str => {
         return str.replace(/^\S/, function(s) {
@@ -103,18 +128,15 @@ export default class extends Component {
             // 取变量名称
             const varName = err.message.split(' ')[0]
             this.vars.push((window[varName] = `$${varName}$`))
-        } else if (err instanceof TypeError) {
-            this.setState({
-                err: `请手动删除错误提示中的相关函数：${err.message}`
-            })
-            return false
         } else {
+            this.setState({
+                err: err.message
+            })
             return false
         }
         return this.toJSX(options, tagName)
     }
-    handleChange = event => {
-        const { value } = event.target
+    handleChange = value => {
         this.setState(
             {
                 options: value
@@ -147,45 +169,71 @@ export default class extends Component {
     }
     render() {
         const { vars, modules, jsx, err } = this.state
+        const importModules = `import { Recharts, Components } from 'react-echarts'\nconst { ${modules.join(', ')} } = Components`
         return (
-            <div>
-                <textarea cols={150} rows={30} onChange={this.handleChange} value={this.state.options} />
-                {vars && vars.length > 0 && (
-                    <div>
-                        <p>请替换图表代码中以下字符串为真实变量</p>
-                        <ul>
-                            {vars.map((v, k) => (
-                                <li key={`vars-${k}`}>{v}</li>
-                            ))}
-                        </ul>
+            <div className="tools-container">
+                <div className="tools-header">
+                    <h2>React Component Echarts Tool</h2>
+                    <p>组件式百度图表辅助工具</p>
+                </div>
+                <div className="editor-container">
+                    <div className="editor-wrap">
+                        <AceEditor
+                            className="ace-editor"
+                            mode="python"
+                            theme="solarized_light"
+                            width="100%"
+                            fontSize={14}
+                            onChange={this.handleChange}
+                            value={this.state.options}
+                        />
                     </div>
+                    <div className="editor-wrap">
+                        <img className="copy" src={copy} alt="copy" data-clipboard-text={importModules} />
+                        <img className="copy" src={copy} alt="copy" style={{ top: 205 }} data-clipboard-text={jsx} />
+                        <AceEditor
+                            mode="jsx"
+                            width="100%"
+                            height="180px"
+                            fontSize={14}
+                            className="ace-editor"
+                            theme="solarized_light"
+                            readOnly
+                            value={modules.length > 0 ? importModules : ''}
+                        />
+                        <AceEditor
+                            readOnly
+                            fontSize={14}
+                            width="100%"
+                            height="300px"
+                            mode="jsx"
+                            className="ace-editor"
+                            theme="solarized_light"
+                            value={jsx}
+                        />
+                    </div>
+                </div>
+                {vars && vars.length > 0 && (
+                    <p className="vars-wrap">
+                        请替换图表代码中以下字符串为真实变量:{' '}
+                        {vars.map((v, k) => (
+                            <span key={`vars-${k}`}>{v}</span>
+                        ))}
+                    </p>
                 )}
-
-                <p>
-                    <button onClick={this.transformation}>运行</button> >>>
-                </p>
-
-                {err && <p>{err}</p>}
-                {!!modules.length && (
-                    <code>
-                        <pre>
-                            //导入组件
-                            <br />
-                            {`import { Recharts, Components } from 'react-echarts'`}
-                            <br />
-                            {`const { ${modules.join(', ')} } = Components`}
-                        </pre>
-                    </code>
+                {err && (
+                    <p className="err-wrap">
+                        请检查配置代码并手动处理以下错误: <span>{err}</span>
+                    </p>
                 )}
-                {!!jsx && (
-                    <code>
-                        <pre>
-                            //图表代码
-                            <br />
-                            {jsx}
-                        </pre>
-                    </code>
-                )}
+                <footer>
+                    <p>
+                        <span>Github 👉 </span>
+                        <a href="https://github.com/dawiwt/react-component-echarts" target="\_parent">
+                            https://github.com/dawiwt/react-component-echarts
+                        </a>
+                    </p>
+                </footer>
             </div>
         )
     }
