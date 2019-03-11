@@ -1,12 +1,15 @@
 import './index.less'
 import React, { Component } from 'react'
-import pretty from 'pretty'
+import beautify from 'js-beautify'
 import AceEditor from 'react-ace'
 import ClipboardJS from 'clipboard'
 import 'brace/mode/jsx'
 import 'brace/mode/python'
 import 'brace/theme/solarized_light'
+import 'brace/ext/searchbox'
 import tagNames from '../tags'
+
+const opts = { indent_size: 2 }
 
 const copy =
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABTUlEQVRYR+2W4U3DMBSEz14CChsgKGySvClgBBD8ASFgAsQWlyqL0CJGgMIOUYxSNVFD3dhOg1KJ+Kfte+/z+RRHoeeheu4PK4CI3BpjzpVSe20AjTHfSqlnkncu/RqAiDwCuHQJPdefSF417bUBzAHsZ1l2nKbpu2ej2rYoio601oX2i+QoFMAUApJb5UNEvOrYHPASupzZOQARmS6dPV2FdzqwFI4dJ56RrBX+7cAmR3wAXgHUiltgpiTPVuc7A3Dd9ab1AaAzBzxDWN5EFcYuAXxCWAJUYewMYAhh7w4MIez9Cv4lwCeAUZ7n48lk8tbGgSiKTrTWMwBzkgdFjZDn+B7AdZvGFs0DyUUtb4BicxzHN0qpCwCHLUE+jDEvSZIUh1mMIICWTRtlvQLYMlHSev16B34Nm5yoMhEKEPIk2wDWMhEE8BeZ2BmAHzDWSjCpN49mAAAAAElFTkSuQmCC'
@@ -15,19 +18,10 @@ export default class extends Component {
     constructor() {
         super()
         this.state = {
-            options: `{
-    xAxis: {
-        type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    },
-    yAxis: {
-        type: 'value'
-    },
-    series: [{
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'line'
-    }]
-}`,
+            options: beautify.js(
+                "{xAxis: {type: 'category',data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']},yAxis: {type: 'value'},series: [{data: [820, 932, 901, 934, 1290, 1330, 1320],type: 'line'}]}",
+                opts
+            ),
             jsx: '',
             modules: [],
             vars: []
@@ -154,7 +148,7 @@ export default class extends Component {
         try {
             this.setState({
                 vars: this.vars,
-                jsx: pretty(this.toJSX()),
+                jsx: beautify.html(this.toJSX(), opts),
                 modules: this.modules.map(this.firstLetterToUpperCase)
             })
         } catch (err) {
