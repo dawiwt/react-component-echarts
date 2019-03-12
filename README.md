@@ -22,9 +22,17 @@ npm install react-component-echarts --save
 npm install echarts --save
 ```
 
+## Quick Start
+
+1. 复制你的 option
+2. 点击[辅助工具](https://dawiwt.github.io/react-component-echarts/tools.html)
+3. 粘贴 option 到文本框
+4. 复制依赖组件与图表代码到你的业务逻辑中
+5. 完成
+
 ## Usage
 
-这里是一个简单示例，更多示例看这里 https://dawiwt.github.io/react-component-echarts
+当然，也可以手动键入组件及属性，这里是一个简单示例，更多示例看这里 https://dawiwt.github.io/react-component-echarts
 
 ```js
 
