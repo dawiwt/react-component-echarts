@@ -49,7 +49,7 @@ export default [
     'shadowStyle',
     'name',
     'indicator',
-    'data',
+    // 'data',
     'handleStyle',
     'inRange',
     'outOfRange',
