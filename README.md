@@ -28,7 +28,8 @@ npm install echarts --save
 2. 点击[辅助工具](https://dawiwt.github.io/react-component-echarts/tools.html)
 3. 粘贴 option 到文本框
 4. 复制依赖组件与图表代码到你的业务逻辑中
-5. 完成
+5. 导入图表依赖 echarts 模块
+6. 完成
 
 ## Usage
 
