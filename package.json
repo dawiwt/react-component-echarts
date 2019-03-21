@@ -1,6 +1,6 @@
 {
   "name": "react-component-echarts",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "echarts for react",
   "main": "dist/index.js",
   "scripts": {
@@ -10,9 +10,12 @@
   },
   "keywords": [
     "react",
-    "echarts",
-    "react-component-echarts",
-    "component"
+    "javascript",
+    "component",
+    "jsx",
+    "chart",
+    "react-component",
+    "react-component-echarts"
   ],
   "author": "DaWi (http://github.com/dawiwt)",
   "license": "MIT",
@@ -54,7 +57,7 @@
   },
   "peerDependencies": {
     "echarts": "^3.0.0 || ^4.0.0",
-    "react": ">=0.13.0 || ^0.14 || ^15.0.0 || >=16.0.0",
-    "prop-types": "^15.0.0"
+    "prop-types": "^15.0.0",
+    "react": ">=0.13.0 || ^0.14 || ^15.0.0 || >=16.0.0"
   }
 }
