@@ -1,0 +1,12 @@
+language: node_js
+node_js: '10'
+script:
+    - npm install
+    - npm run gh-pages
+deploy:
+    provider: gh-pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
+    keep-history: true
+    on:
+        branch: master
