@@ -53,24 +53,12 @@ const { XAxis, YAxis, Series } = Components
 
 ```
 
-## Props
+## Components
 
--   `className` (optional, string) 图表容器 `class` 名
--   `style` (optional, object) 图表容器样式
--   `onEvents` (optional, array) 绑定图表事件
--   `onLoad` (optional, function(Instance)) 图表首次加载完毕会执行 `onLoad`，`Instance` 为图表实例，可供调用百度图表 `API`
+-   Recharts 图表根组件
+-   others 图表子组件，详见[列表](https://github.com/dawiwt/react-component-echarts/blob/master/tags.js)
 
-```js
-<Recharts
-    onEvents={[
-        ['click', params => console.log('click', params)], 
-        ['legendselectchanged', params => console.log('legendselectchanged', params)]
-    ]}>
-    ...
-</Recharts>
-```
-
-以上属性为`Recharts`节点仅有的几个`echarts`之外的属性，其它配置均为透传，无学习成本；
+除`Recharts`外，其它组件均为`options`中的对象存在; 例如，`options.title`作为图表标题的配置项，其值为对象，可以详细配置文本内容、位置、颜色、背景等复杂的样式结构，所以`title`会以组件的形式存在，即`<Title />`; 而`options.animation`控制图表动画，其值为`boolean`等单一类型，所以`animation`以`Prop`的形式存在，即`<Recharts animation={false}/>`; 另外，`options`配置项中对象的层级关系即对应着组件间的父子关系;
 
 ```js
 //例如
@@ -80,7 +68,7 @@ const { XAxis, YAxis, Series } = Components
 option = { xAxis: { type: 'category' } }
 ```
 
-节点间的父子关系相当于对象间嵌套关系；
+节点间的父子关系相当于对象间层级关系；
 
 ```js
 //例如
@@ -104,15 +92,31 @@ option = {
 }
 ```
 
+## Props
+
+以下属性为`Recharts`节点仅有的几个`echarts`之外的属性，其它配置均为透传，无学习成本；
+
+-   `className` (optional, string) 图表容器 `class` 名
+-   `style` (optional, object) 图表容器样式
+-   `onEvents` (optional, array) 绑定图表事件
+-   `onLoad` (optional, function(Instance)) 图表首次加载完毕会执行 `onLoad`，`Instance` 为图表实例，可供调用百度图表 `API`
+
+```js
+<Recharts
+    onEvents={[['click', params => console.log('click', params)], ['legendselectchanged', params => console.log('legendselectchanged', params)]]}>
+    ...
+</Recharts>
+```
+
 除此以外，图表`init`事件与`setOption`事件的参数可以通过`Recharts`透传，均非必传，不传为`echarts`默认值；
 
 ```js
 // init
-<Recharts 
-    theme="custom-theme" 
-    devicePixelRatio={window.devicePixelRatio} 
-    renderer="canvas" 
-    width={500} 
+<Recharts
+    theme="custom-theme"
+    devicePixelRatio={window.devicePixelRatio}
+    renderer="canvas"
+    width={500}
     height={500}>
     ...
 </Recharts>
