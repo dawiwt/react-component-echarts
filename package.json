@@ -22,6 +22,10 @@
   "bugs": {
     "url": "https://github.com/dawiwt/react-component-echarts/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dawiwt/react-component-echarts.git"
+  },
   "homepage": "https://dawiwt.github.io/react-component-echarts",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
