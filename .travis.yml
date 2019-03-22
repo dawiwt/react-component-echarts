@@ -4,9 +4,10 @@ script:
     - npm install
     - npm run gh-pages
 deploy:
-    provider: gh-pages
+    provider: pages
     skip-cleanup: true
     github-token: $GITHUB_TOKEN
-    keep-history: true
+    keep-history: true,
+    local-dir: gh-pages
     on:
         branch: master
