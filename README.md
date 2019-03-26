@@ -129,6 +129,8 @@ option = {
 
 更多属性查看 https://www.echartsjs.com/option.html
 
+喜欢请给个 Star ，谢谢！
+
 ## LICENSE
 
 MIT@[dawiwt](https://github.com/dawiwt)
