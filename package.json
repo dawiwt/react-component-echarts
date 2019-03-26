@@ -1,7 +1,7 @@
 {
   "name": "react-component-echarts",
   "version": "0.1.0",
-  "description": "echarts for react",
+  "description": "React component echarts. 组件式百度图表。",
   "main": "dist/index.js",
   "scripts": {
     "start": "webpack-dev-server",
@@ -14,6 +14,7 @@
     "component",
     "jsx",
     "chart",
+    "echarts",
     "react-component",
     "react-component-echarts"
   ],
