@@ -17,36 +17,43 @@ export default {
     Line: {
         type: 'line',
         title: '折线图',
-        component: Line
+        component: Line,
+        codesandboxKey: 'v05wmq2j3'
     },
     Marker: {
         type: 'marker',
         title: '标记',
-        component: Marker
+        component: Marker,
+        codesandboxKey: 'k09rk8y8w5'
     },
     Bar: {
         type: 'bar',
         title: '柱状图',
-        component: Bar
+        component: Bar,
+        codesandboxKey: 'py17xnzw5m'
     },
     BarPolar: {
         type: 'bar-polar',
         title: '柱状极坐标',
-        component: BarPolar
+        component: BarPolar,
+        codesandboxKey: 'oj34w360vq'
     },
     Pie: {
         type: 'pie',
         title: '饼图',
-        component: Pie
+        component: Pie,
+        codesandboxKey: 'j4nk98wol3'
     },
     Scatter: {
         type: 'scatter',
         title: '散点图',
-        component: Scatter
+        component: Scatter,
+        codesandboxKey: 'kwj0pkj7v7'
     },
     TheMap: {
         type: 'map',
         title: '地图',
-        component: TheMap
+        component: TheMap,
+        codesandboxKey: 'k3q4qkn2qr'
     }
 }
