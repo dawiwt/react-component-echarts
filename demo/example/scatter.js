@@ -1,5 +1,5 @@
 import React from 'react'
-import { Recharts, Components } from 'react-echarts'
+import { Recharts, Components } from 'react-component-echarts'
 const { SplitLine, Legend, Grid, Tooltip, XAxis, YAxis, VisualMap, Series } = Components
 var dataBJ = [
     [1, 55, 9, 56, 0.46, 18, 6, '良'],

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Recharts, Components } from 'react-echarts'
+import { Recharts, Components } from 'react-component-echarts'
 const { Title, Legend, Grid, Tooltip, Series } = Components
 var data = [
     [5000, 10000, 6785.71],

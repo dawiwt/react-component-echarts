@@ -1,5 +1,5 @@
 import React from 'react'
-import { Recharts, Components } from 'react-echarts'
+import { Recharts, Components } from 'react-component-echarts'
 
 const { AxisPointer, Feature, MarkArea, Title, Tooltip, Toolbox, XAxis, YAxis, VisualMap, Series } = Components
 

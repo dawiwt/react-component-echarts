@@ -5,7 +5,7 @@ import '../lib/china'
 import '../lib/world'
 import 'echarts/dist/extension/bmap.min'
 import React from 'react'
-import { Recharts, Components } from 'react-echarts'
+import { Recharts, Components } from 'react-component-echarts'
 const { Label, RippleEffect, Title, Tooltip, Series } = Components
 var data = [
     { name: '海门', value: 9 },

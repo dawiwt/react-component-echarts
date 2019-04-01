@@ -1,5 +1,5 @@
 import React from 'react'
-import { Recharts, Components } from 'react-echarts'
+import { Recharts, Components } from 'react-component-echarts'
 const { Label, Title, Tooltip, VisualMap, Series } = Components
 
 export default function() {

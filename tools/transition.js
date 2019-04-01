@@ -163,7 +163,7 @@ export default class extends Component {
     }
     render() {
         const { vars, modules, jsx, err } = this.state
-        const importModules = `import { Recharts, Components } from 'react-echarts'\nconst { ${modules.join(', ')} } = Components`
+        const importModules = `import { Recharts, Components } from 'react-component-echarts'\nconst { ${modules.join(', ')} } = Components`
         return (
             <div className="tools-container">
                 <div className="tools-header">

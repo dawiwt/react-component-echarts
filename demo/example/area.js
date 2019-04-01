@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Recharts, Components } from 'react-echarts'
+import { Recharts, Components } from 'react-component-echarts'
 
 const { Title, Legend, Tooltip, AxisPointer, Label, Toolbox, Feature, Grid, XAxis, YAxis, Series } = Components
 

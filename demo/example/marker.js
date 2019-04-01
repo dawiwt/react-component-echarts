@@ -1,5 +1,5 @@
 import React from 'react'
-import { Recharts, Components } from 'react-echarts'
+import { Recharts, Components } from 'react-component-echarts'
 const { DataZoom, Feature, AxisLabel, MarkLine, Title, Tooltip, Legend, Toolbox, XAxis, YAxis, Series } = Components
 
 export default function() {
