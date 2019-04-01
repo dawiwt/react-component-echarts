@@ -129,8 +129,12 @@ export default class extends PureComponent {
         }
     }
     render() {
+        const { width = '100%', height = '100%' } = this.props
         return (
-            <div ref={layout => (this.layout = layout)} className={ctx('react-component-echarts', this.props.className)} style={this.props.style}>
+            <div
+                ref={layout => (this.layout = layout)}
+                className={ctx('react-component-echarts', this.props.className)}
+                style={Object.assign({ width, height }, this.props.style)}>
                 <div ref={dom => (this.dom = dom)} style={{ width: '100%', height: '100%' }}>
                     {React.Children.map(this.props.children, children => {
                         if (isValidElement(children)) {
