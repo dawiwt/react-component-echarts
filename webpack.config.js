@@ -13,7 +13,7 @@ module.exports = {
     devtool: 'cheap-eval-source-map',
     resolve: {
         alias: {
-            'react-echarts': path.resolve(__dirname, 'src/index.js')
+            'react-component-echarts': path.resolve(__dirname, 'src/index.js')
         }
     },
     mode: 'development',

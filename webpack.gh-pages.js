@@ -12,7 +12,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'react-echarts': path.resolve(__dirname, 'src/index.js')
+            'react-component-echarts': path.resolve(__dirname, 'src/index.js')
         }
     },
     mode: 'production',
