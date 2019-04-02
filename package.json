@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "gh-pages": "webpack --config ./webpack.gh-pages.js",
-    "build": "cross-env NODE_ENV=production babel src -d dist"
+    "build": "cross-env NODE_ENV=production babel src -d dist",
+    "postpublish": "npm run build"
   },
   "keywords": [
     "react",
