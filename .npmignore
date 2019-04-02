@@ -1,0 +1,7 @@
+node_modules
+
+.idea
+
+# Logs
+logs
+*.log
