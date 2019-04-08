@@ -1,3 +1,6 @@
+
+![Example](https://github.com/dawiwt/react-component-echarts/blob/master/example.png)
+
 # React Component Echarts
 
 组件式百度图表，示例 https://dawiwt.github.io/react-component-echarts
