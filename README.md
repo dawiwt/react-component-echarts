@@ -132,6 +132,10 @@ option = {
 
 更多属性查看 https://www.echartsjs.com/option.html
 
+## Correlations
+
+[戏说组件式百度图表的由来及简单逻辑](https://juejin.im/post/5ca59d00e51d4514f965c88e)
+
 喜欢请给个 Star ，谢谢！
 
 ## LICENSE
