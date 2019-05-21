@@ -15,6 +15,8 @@
 -   通过`Props`配置，学习、维护成本更低
 -   支持[辅助工具](https://dawiwt.github.io/react-component-echarts/tools.html)从配置到组件的快速转换，高效开发
 
+![Tools](https://github.com/dawiwt/react-component-echarts/blob/master/tools.gif)
+
 ## Install
 
 ```sh
