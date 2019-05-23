@@ -1,6 +1,6 @@
 import React, { PureComponent, isValidElement } from 'react'
 import PropTypes from 'prop-types'
-import echarts from 'echarts'
+import echarts from 'echarts/lib/echarts'
 import ctx from 'classnames'
 import debounce from 'debounce'
 import { ResizeSensor } from 'css-element-queries'
