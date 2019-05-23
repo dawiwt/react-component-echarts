@@ -1,12 +1,15 @@
 import React from 'react'
-import echarts from 'echarts'
+import echarts from 'echarts/lib/echarts'
 import { Recharts, Components } from 'react-component-echarts'
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/component/title'
+import 'echarts/lib/component/dataZoom'
 const { AxisLabel, Title, XAxis, YAxis, DataZoom, Series } = Components
 var dataAxis = ['点', '击', '柱', '子', '或', '者', '两', '指', '在', '触', '屏', '上', '滑', '动', '能', '够', '自', '动', '缩', '放']
 var data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220]
 var yMax = 500
 var dataShadow = []
-var zoomSize = 6;
+var zoomSize = 6
 
 for (var i = 0; i < data.length; i++) {
     dataShadow.push(yMax)

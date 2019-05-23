@@ -42,6 +42,11 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin()
     ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    },
     devServer: {
         historyApiFallback: true,
         compress: true,

@@ -1,6 +1,12 @@
 import React from 'react'
 import { Recharts, Components } from 'react-component-echarts'
-const { Title, Legend, Grid, Tooltip, Series } = Components
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/component/title'
+import 'echarts/lib/component/tooltip'
+import 'echarts/lib/component/grid'
+import 'echarts/lib/component/legend'
+import 'echarts/lib/component/polar'
+const { Title, Legend, Grid, Tooltip, Series, Polar, RadiusAxis, AngleAxis } = Components
 var data = [
     [5000, 10000, 6785.71],
     [4000, 10000, 6825],
@@ -47,10 +53,13 @@ var barHeight = 50
 
 export default function() {
     return (
-        <Recharts angleAxis={{ type: 'category', data: cities }} radiusAxis={{}} polar={{}}>
+        <Recharts>
             <Title text="在中国租个房子有多贵？" subtext="市中心一室月租费（数据来源：https://www.numbeo.com）" />
             <Legend show={true} data={['A', 'B', 'C']} />
             <Grid top={100} />
+            <Polar />
+            <RadiusAxis />
+            <AngleAxis type="category" data={cities} />
             <Tooltip
                 show={true}
                 formatter={function(params) {

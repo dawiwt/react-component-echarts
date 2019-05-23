@@ -8,7 +8,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'gh-pages'),
-        filename: '[name].js'
+        filename: '[name].[chunkhash:8].js'
     },
     resolve: {
         alias: {
@@ -39,5 +39,10 @@ module.exports = {
             filename: './tools.html',
             chunks: ['tools']
         })
-    ]
+    ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    }
 }

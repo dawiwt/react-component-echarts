@@ -130,4 +130,31 @@ body {
             color: #434343;
         }
     }
+
+    .suspense-fallback {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: @main-color;
+    }
+
+    .suspense-fallback svg {
+        margin-top: -20px;
+        animation: rotate 1.2s linear infinite;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 }

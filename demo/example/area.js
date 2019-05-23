@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import { Recharts, Components } from 'react-component-echarts'
+import 'echarts/lib/chart/line'
+import 'echarts/lib/component/tooltip'
+import 'echarts/lib/component/title'
+import 'echarts/lib/component/grid'
+import 'echarts/lib/component/toolbox'
 
 const { Title, Legend, Tooltip, AxisPointer, Label, Toolbox, Feature, Grid, XAxis, YAxis, Series } = Components
 
