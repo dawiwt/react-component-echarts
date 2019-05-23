@@ -38,15 +38,16 @@ npm install echarts --save
 
 ## Usage
 
-当然，也可以手动键入组件及属性，这里是一个简单示例，更多示例看这里 https://dawiwt.com/react-component-echarts
+由于全部的图表和组件 ECharts 包体积会比较大，所以`react-component-echarts`只引入`ECharts`主模块，对于依赖的图表和组件，需要自己手动引入，这样可以有效减小打包后的体积，下面是一个简单示例，更多示例看[这里](https://dawiwt.com/react-component-echarts)；
 
 ```js
 
-//导入图表
-import echarts from 'echarts/lib/echarts'
-
 //导入组件
 import { Recharts, Components } from 'react-component-echarts'
+
+//导入 line 图表
+import 'echarts/lib/component/line'
+
 const { XAxis, YAxis, Series } = Components
 
 //图表代码
@@ -57,6 +58,10 @@ const { XAxis, YAxis, Series } = Components
 </Recharts>
 
 ```
+
+可以按需引入的模块列表见[这里](https://github.com/ecomfe/echarts/blob/master/index.js)。
+
+当然，如果不关心打包体积，为方便开发，可直接在入口文件通过`import 'echarts'`或`require('echarts')`引入全部图表组件。
 
 ## Components
 
