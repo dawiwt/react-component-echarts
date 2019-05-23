@@ -3,7 +3,7 @@
 
 # React Component Echarts
 
-组件式百度图表，示例 https://dawiwt.github.io/react-component-echarts
+组件式百度图表，示例 https://dawiwt.com/react-component-echarts
 
 [![Build Status](https://api.travis-ci.org/dawiwt/react-component-echarts.svg?branch=master)](https://travis-ci.org/dawiwt/react-component-echarts) [![npm](https://img.shields.io/npm/v/react-component-echarts.svg)](https://www.npmjs.com/package/react-component-echarts) [![npm](https://img.shields.io/npm/dw/react-component-echarts.svg?label=npm%20downloads&style=flat)](https://www.npmjs.com/package/react-component-echarts) [![npm](https://img.shields.io/npm/l/react-component-echarts.svg)](https://www.npmjs.com/package/react-component-echarts)
 
@@ -13,7 +13,7 @@
 -   图表自适应
 -   功能完全兼容`echarts`本身功能
 -   通过`Props`配置，学习、维护成本更低
--   支持[辅助工具](https://dawiwt.github.io/react-component-echarts/tools.html)从配置到组件的快速转换，高效开发
+-   支持[辅助工具](https://dawiwt.com/react-component-echarts/tools.html)从配置到组件的快速转换，高效开发
 
 ![Tools](https://github.com/dawiwt/react-component-echarts/blob/master/tools.gif)
 
@@ -30,7 +30,7 @@ npm install echarts --save
 ## Quick Start
 
 1. 复制你的 option
-2. 点击[辅助工具](https://dawiwt.github.io/react-component-echarts/tools.html)
+2. 点击[辅助工具](https://dawiwt.com/react-component-echarts/tools.html)
 3. 粘贴 option 到文本框
 4. 复制依赖组件与图表代码到你的业务逻辑中
 5. 导入图表依赖 echarts 模块
@@ -38,7 +38,7 @@ npm install echarts --save
 
 ## Usage
 
-当然，也可以手动键入组件及属性，这里是一个简单示例，更多示例看这里 https://dawiwt.github.io/react-component-echarts
+当然，也可以手动键入组件及属性，这里是一个简单示例，更多示例看这里 https://dawiwt.com/react-component-echarts
 
 ```js
 

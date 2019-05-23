@@ -28,7 +28,7 @@
     "type": "git",
     "url": "https://github.com/dawiwt/react-component-echarts.git"
   },
-  "homepage": "https://dawiwt.github.io/react-component-echarts",
+  "homepage": "https://dawiwt.com/react-component-echarts",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
