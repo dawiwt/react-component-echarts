@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
     entry: {
@@ -30,6 +31,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new CopyPlugin([{ from: './favicon.ico', to: './favicon.ico' }]),
         new HtmlWebpackPlugin({
             template: './demo/index.html',
             filename: './index.html',

@@ -1,13 +1,16 @@
 import './index.less'
 import React, { Component } from 'react'
-import beautify from 'js-beautify'
 import AceEditor from 'react-ace'
-import ClipboardJS from 'clipboard'
 import 'brace/mode/jsx'
 import 'brace/mode/python'
 import 'brace/theme/solarized_light'
 import 'brace/ext/searchbox'
 import tagNames from '../tags'
+
+const beautify = {
+    js: js_beautify,
+    html: html_beautify
+}
 
 const opts = { indent_size: 2 }
 
