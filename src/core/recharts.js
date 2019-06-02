@@ -51,7 +51,16 @@ export default class extends PureComponent {
             this.layout,
             debounce(
                 () => {
-                    this.chart.resize()
+                    /**
+                     * fix issues #3 https://github.com/dawiwt/react-component-echarts/issues/3
+                     * 由于 componentWillUnmount 中先 dispose 图表
+                     * 后 detach 的 domResizeListen
+                     * 会造成图表销毁后，又触发了 DOM 尺寸变化监听事件的可能
+                     * 所以，这里做个判断
+                     */
+                    if (this.chart && this.chart.resize) {
+                        this.chart.resize()
+                    }
                 },
                 100,
                 false
